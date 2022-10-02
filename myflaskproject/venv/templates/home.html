@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+{% if name %}
+    <h1>Hello {{name}}</h1>
+{% else %}
+    <h1>Hello World</h1>
+{% endif %}
+
+<input type="file" name="file" id="upload">
+<button onclick="uploadFile()">Upload</button>
+
+<script>
+    function uploadFile() {
+        let file = document.getElementById("upload").files[0];
+        let data = new FormData();
+        data.append('file', file)
+        console.log(file)
+        fetch("upload", {
+            method: 'POST',
+            body: data
+        })
+    }
+</script>
+</body>
+</html>
